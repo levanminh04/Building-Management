@@ -1,8 +1,10 @@
 package com.javaweb.service.impl;
 
 import com.javaweb.builder.BuildingSearchBuilder;
+import com.javaweb.converter.BuildingConverter;
 import com.javaweb.converter.BuildingSearchBuilderConverter;
 import com.javaweb.converter.BuildingSearchResponseConverter;
+import com.javaweb.converter.RentAreaConverter;
 import com.javaweb.entity.BuildingEntity;
 import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.BuildingDTO;
@@ -40,8 +42,6 @@ public class BuildingServiceImpl implements BuildingService {
     @Autowired
     private BuildingSearchResponseConverter buildingSearchResponseConverter;
     @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
     private RentAreaService rentAreaService;
     @Autowired
     private RentAreaRepository rentAreaRepository;
@@ -49,6 +49,10 @@ public class BuildingServiceImpl implements BuildingService {
     private AssignmentBuildingService assignmentBuildingService;
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private BuildingConverter buildingConverter;
+    @Autowired
+    private RentAreaConverter rentAreaConverter;
 
     @Override
     public ResponseDTO loadStaffs(Long buildingId) {
@@ -93,26 +97,20 @@ public class BuildingServiceImpl implements BuildingService {
     @Transactional
     @Override
     public void deleteBuildings( List<Long> ids) {
-        rentAreaService.deleteByBuildings(ids);                // muốn xóa building thì trước tiên phải xóa những thằng có khóa ngoại là buildingid trước đã
-        assignmentBuildingService.deleteByBuildingIdIn(ids);   // rentArea và assignmentbuilding là 2 bảng có quan hệ với bảng building nên phải xóa trước
-        buildingRepository.flush(); // Đẩy các thay đổi vào cơ sở dữ liệu: Khi bạn gọi flush(), nó sẽ phát sinh các lệnh SQL tương ứng (INSERT, UPDATE, DELETE) và gửi chúng đến cơ sở dữ liệu để thực hiện, nhưng không kết thúc giao dịch. Nghĩa là các thay đổi sẽ được "đẩy" vào cơ sở dữ liệu, nhưng vẫn có thể được rollback nếu giao dịch bị hủy sau đó. sử dụng để debug là chủ yếu, ở đây đang bị lỗi xóa building nên cho flush vào để check xem thằng rentarea và assignmentbuilding có quan hệ với building đã thực sự được xóa chưa
-        //List<BuildingEntity> ds =  buildingRepository.findAll();
-        buildingRepository.deleteByIdIn(ids);                  // building xóa cuối cùng
-        
+//        rentAreaService.deleteByBuildings(ids);
+//        assignmentBuildingService.deleteByBuildingIdIn(ids);             // CÓ CASCADE THÌ KHÔNG CẦN BƯỚC NÀY NỮA
+//        buildingRepository.flush();
+        buildingRepository.deleteByIdIn(ids);
+
     }
 
 
     @Override
     public BuildingDTO addOrUpdateBuilding(BuildingDTO buildingDTO) {
-        // Long buildingId = buildingDTO.getId();
-        BuildingEntity buildingEntity = modelMapper.map(buildingDTO, BuildingEntity.class);
-        buildingEntity.setType(String.join(",", buildingDTO.getTypeCode()));        // đoạn này không cần phải delete building như ở bên rentArea vì  update hay add new thì sẽ được quyết định bởi cái id mình truyen vào
 
-        buildingRepository.save(buildingEntity);   // lưu building trước xong mới lưu những cái có quan hệ với bảng building
-        buildingDTO.setId(buildingEntity.getId());   // không set id cho buildingDTO thì sau nhảy vào addRentArea bị lỗi đấy
-        if(StringUtils.check(buildingDTO.getRentArea())){
-            rentAreaService.addRentArea(buildingDTO);
-        }
+        BuildingEntity buildingEntity = buildingConverter.toBuildingEntity(buildingDTO);
+
+        buildingRepository.save(buildingEntity); // có id thì hàm save tự hiểu là update, không có id thì là thêm mới
         return buildingDTO;
     }
 

@@ -501,9 +501,9 @@
         }).get();
         data['staffs'] = staffs;
 
-        if(data['staffs'] != ''){
-            assignment(data);
-        }
+
+        assignment(data);
+
         console.log("ok");
     });
 

@@ -17,7 +17,7 @@ public class BuildingDTO extends AbstractDTO{
 
     private String street;
 
-    private Long number0fBasement;
+    private Long numberOfBasement;
 
     private String direction;
 
@@ -115,13 +115,15 @@ public class BuildingDTO extends AbstractDTO{
         this.street = street;
     }
 
-    public Long getNumber0fBasement() {
-        return number0fBasement;
+
+    public Long getNumberOfBasement() {
+        return numberOfBasement;
     }
 
-    public void setNumber0fBasement(Long number0fBasement) {
-        this.number0fBasement = number0fBasement;
+    public void setNumberOfBasement(Long numberOfBasement) {
+        this.numberOfBasement = numberOfBasement;
     }
+
 
     public String getDirection() {
         return direction;

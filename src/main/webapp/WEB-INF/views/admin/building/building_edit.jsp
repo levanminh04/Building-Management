@@ -87,7 +87,7 @@
                     <div class="form-group">
                       <label class="col-xs-3"> Số tầng hầm </label>
                       <div class="col-xs-9">
-                        <form:input  class="form-control" path="number0fBasement"/>
+                        <form:input  class="form-control" path="numberOfBasement"/>
                       </div>
                     </div>
                     <div class="form-group">

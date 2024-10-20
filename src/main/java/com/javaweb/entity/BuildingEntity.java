@@ -52,26 +52,17 @@ public class BuildingEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "assignmentbuilding",
-            joinColumns = @JoinColumn(name = "buildingid", nullable = false),           // joinColumns: Thuộc tính này xác định cột trong bảng trung gian sẽ chứa khóa ngoại liên kết với THỰC THỂ HIỆN TẠI (buildingEntity).
-            inverseJoinColumns = @JoinColumn(name = "staffid", nullable = false))     // inverseJoinColumns xác định khóa ngoại trỏ về thực thể đối nghịch (ở đây là UserEntity).
+            joinColumns = @JoinColumn(name = "buildingid", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "staffid", nullable = false))
     private List<UserEntity> users = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY) // mappedBy = "building" refers to the "building" field in the RentAreaEntity class, bên RentAreaEntity cũng phải có một field tên giống hệt với mappedBy
-                                                              // mappedBy = "building" thể hiện RentAreaEntity có khóa ngoại của Building
-    private List<RentAreaEntity> rentAreaEntities = new ArrayList<>();   // fetch = FetchType.LAZY: hiểu đơn giản thì đây là chế độ đọc, ta đang chọn LAZY LOAD
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<RentAreaEntity> rentAreaEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "buildingEntity", fetch = FetchType.LAZY)
-    private List<AssignmentBuildingEntity> assignmentBuildingEntities = new ArrayList<>();
+    // muốn đọc comment giải thích các từ khóa thì vào branch manual ManyToMany mà đọc
 
 
-    public List<AssignmentBuildingEntity> getAssignmentBuildingEntities() {
-        return assignmentBuildingEntities;
-    }
-
-    public void setAssignmentBuildingEntities(List<AssignmentBuildingEntity> assignmentBuildingEntities) {
-        this.assignmentBuildingEntities = assignmentBuildingEntities;
-    }
 
     public List<RentAreaEntity> getRentAreaEntities() {
         return rentAreaEntities;
