@@ -37,7 +37,7 @@ public class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
             for(Field item : fields) {
                 item.setAccessible(true); // phải có lệnh này thì nó mới cho lấy dữ liệu
                 String fieldName = item.getName(); // trả về tên của thuộc tính như được định nghĩa trong class
-                if (!fieldName.equals("staffid") && !fieldName.equals("typecode")
+                if (!fieldName.equals("staffId") && !fieldName.equals("typeCode")
                         && !fieldName.startsWith("min") && !fieldName.startsWith("max")) 	{
                     Object value = item.get(buildingSearchBuilder); // Phương thức get() của Field trong Java Reflection luôn trả về giá trị dưới dạng Object, bất kể kiểu dữ liệu gốc của thuộc tính đó là kiểu gì., không nên dùng toString() ở dòng này vì nếu giá trị là null thì toString() sẽ bị NullPointerException
                     if( value != null ) {
@@ -60,7 +60,7 @@ public class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
     public void specialQuery(BuildingSearchBuilder buildingSearchBuilder, StringBuilder where) {
         Long staffid = buildingSearchBuilder.getStaffId();
         if (staffid != null) {
-            where.append(" AND assignmentbuilding.staffid = " + staffid);
+            where.append(" AND a.staffid = " + staffid);
         }
 
         Long minArea = buildingSearchBuilder.getMinArea();
@@ -96,6 +96,12 @@ public class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
     }
 
 
+    public static void groupByQuery(BuildingSearchBuilder buildingSearchBuilder, StringBuilder where)
+    {
+        where.append(" group by b.id ");
+        if(buildingSearchBuilder.getStaffId() != null) where.append(",a.id; ");
+    }
+
     @Override
     public List<BuildingEntity> findAll(BuildingSearchBuilder buildingSearchBuilder) {
 
@@ -105,11 +111,12 @@ public class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
         StringBuilder where = new StringBuilder(" WHERE 1 = 1");
         normalQuery(buildingSearchBuilder, where);
         specialQuery(buildingSearchBuilder, where);
-        sql.append(where).append(" GROUP BY b.id");
-        System.out.println("hellomother"+sql.toString());
+        groupByQuery(buildingSearchBuilder, where);
+
+        sql.append(where);
+        System.out.println(sql.toString());
         Query query = entityManager.createNativeQuery(sql.toString(), BuildingEntity.class);
         return query.getResultList();
 
     }
 }
-
