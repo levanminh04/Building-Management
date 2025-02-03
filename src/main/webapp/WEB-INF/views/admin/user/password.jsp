@@ -79,6 +79,9 @@
             </div>
         </div>
     </div>
+
+    <%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
     <script>
         $(document).ready(function () {
             $('#btnChangePassword').click(function () {
@@ -127,10 +130,20 @@
                         window.location.href = "<c:url value='/admin/profile-password?message=change_password_fail'/>";
                     }
                 },
-                error: function (res) {
-                    console.log(res);
-                    window.location.href = "<c:url value='/admin/profile-password?message=error_system'/>";
+                <%--error: function (res) {--%>
+                <%--    console.log(res);--%>
+                <%--    window.location.href = "<c:url value='/admin/profile-password?message=error_system'/>";--%>
+                <%--}--%>
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    // Kiểm tra điều kiện để xử lý logic phù hợp
+                    if (xhr.status === 401) { // Ví dụ: nếu server trả lỗi 500
+                        handleAjaxError(xhr, textStatus, errorThrown, () => changePassword(data, id) );
+                    } else {
+                        window.location.href = "<c:url value='/admin/profile-password?message=error_system'/>";
+                    }
                 }
+
             });
         }
     </script>

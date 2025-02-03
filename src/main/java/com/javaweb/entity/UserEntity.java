@@ -1,12 +1,22 @@
 package com.javaweb.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "user")
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity implements UserDetails {
 
     private static final long serialVersionUID = -4988455421375043688L;
 
@@ -46,76 +56,46 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<BuildingEntity> buildings = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    private List<CustomerEntity> customers = new ArrayList<>();
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-    public List<BuildingEntity> getBuildings() {
-        return buildings;
-    }
+        for(RoleEntity role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getCode()));
+        }
 
-    public void setBuildings(List<BuildingEntity> buildings) {
-        this.buildings = buildings;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public List<RoleEntity> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleEntity> roles) {
-        this.roles = roles;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-        @Override
-    public Long getId() {
-        return id;
+        return authorities;
     }
 
     @Override
-    public void setId(Long id) {
-        this.id = id;
+    public String getUsername() {
+        return this.userName;
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // Tài khoản không hết hạn
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // Mật khẩu không hết hạn
+    }
+
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.status == 1; // status = 1 => trả về True => nghĩa là tài khoản không bị khóa ngược lại trả về false
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.status == 1; // status = 1 nghĩa là tài khoản hoạt động
+    }
+
 }

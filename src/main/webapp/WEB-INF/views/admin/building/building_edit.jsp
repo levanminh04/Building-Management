@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
 <c:url var="buildingEditURL" value="/admin/building-edit"/>
 <html>
 <head>
@@ -52,6 +55,7 @@
                       <label class="col-xs-3"> Tên tòa nhà </label>
                       <div class="col-xs-9">
                         <form:input  class="form-control"  path="name"/>
+<%--                        <form:errors path="name" cssClass="text-danger" />--%>
                       </div>
                     </div>
                     <div class="form-group">
@@ -216,13 +220,24 @@
                         </div>
                       </div>
                     </div>
+
+
                     <div class="form-group">
                       <label class="col-xs-3"> Ghi chú </label>
                       <div class="col-xs-9">
-
                         <form:input  class="form-control" path ="note"/>
                       </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="files" class="col-sm-3 col-form-label">Hình ảnh tòa nhà</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="files" name="buildingImages" accept="image/*" multiple>
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
                       <label class="col-xs-3"></label>
                          <div class="col-xs-9">
@@ -249,7 +264,7 @@
 
                              </c:if>
 
-                            <a href="/admin/building-list" class="btn btn-warning">
+                            <a href="javascript:void(0);" onclick="navigateWithRefresh('/admin/building-list')" class="btn btn-warning">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"  fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"></path>
@@ -268,80 +283,88 @@
 
                          </div>
                     </div>
+
+
                     <form:hidden path = "id" id = "buildingID" />
                   </form>
                </div>
              </form:form>
+              <div class="form-group">
+
       </div>
+
+
+    </div>
 
     </div><!-- /.page-content -->
   </div>
 </div><!-- /.main-content -->
 
 <script src="assets/js/jquery.2.1.1.min.js"></script>
-
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
 <script>
-  $('#btnAddOrUpdateBuilding').click(function (event) {
-      event.preventDefault(); // lệnh này quan trọng đấy
-//       Khi bạn nhấn một nút <button> nằm trong một thẻ <form> (TH hợp này thì btnAddOrUpdateBuilding đang này trong form),
-//       trình duyệt sẽ tự động xem đó là một yêu cầu để gửi (submit) form.
-//       Hành động gửi này sẽ khiến toàn bộ trang được làm mới (reload) hoặc điều hướng đến một trang khác,
-//       tùy thuộc vào thuộc tính action của form.
-//       Nếu không có event.preventDefault();, khi bạn nhấn nút gửi, trình duyệt sẽ gửi tất cả dữ liệu từ các trường trong form đến URL mà bạn đã chỉ định trong thuộc tính action.
-//       Khi bạn gán một hàm xử lý cho sự kiện click của nút, trình duyệt vẫn sẽ tiếp tục thực hiện hành động mặc định của nút đó,
-//       tức là gửi form, trừ khi bạn yêu cầu nó không làm vậy.
-//       Nếu có một yêu cầu điều hướng trong mã JavaScript (như window.location.href),
-//       nó có thể không được thực hiện vì trang đã được làm mới trước khi yêu cầu đó được thực hiện.
-//       => TÓM LẠI LÀ NẾU KHÔNG CÓ PREVENT THÌ MẤY LỆNH ĐIỀU HƯỚNG NÓ ÉO HOẠT ĐỘNG ĐÚNG ĐÂU
-      // sử dụng JS để lấy data
-    var data = {};  // tạo cấu trúc JSON
-    var typecode = [];
-    var formData = $('#formEdit').serializeArray();
-// serializeArray() dùng để thu thập dữ liệu từ tất cả các trường trong một form HTML (ví dụ như input, textarea, select, v.v.) và trả về một mảng các đối tượng chứa tên và giá trị của từng trường trong form.
-    $.each(formData, function (i, v) {
-      if (v.name != 'typeCode') {
-        data["" + v.name + ""] = v.value;
-      }
-      else {
-        typecode.push(v.value);
-      }
-    })
-    data['typeCode'] = typecode;
 
-    // call API   sử dụng AJAX để send data to server
-    if(typecode.length > 0){
-        addOrUpdateBuilding(data);
-    }
-    else{
-        // bổ sung thêm chức năng: nếu nhập thiếu thì vẫn giữ nguyễn data trên các field
-        window.location.href = '<c:url value="/admin/building-edit?typecode=required"/>';
+$('#btnAddOrUpdateBuilding').click(function (event) {
+    event.preventDefault(); // Quan trọng để ngăn hành vi submit mặc định của form
 
+    var formData = new FormData(); // phải sử dụng đối tượng FormData thì mới truyền được kiểu multipartfile, không truyền được theo kiểu json, formdata sẽ tự đông binding dữ liệu vào DTO truyền vào controller, không cần sử dụng @Requestbody (yêu cầu dạng json)
+    var typeCode = [];
+
+    // Thu thập dữ liệu từ các trường trong form
+    $('#formEdit').serializeArray().forEach(function (field) {
+        if (field.name !== 'typeCode') {
+            formData.append(field.name, field.value); // Thêm các trường không phải typeCode
+        } else {
+            typeCode.push(field.value);
+        }
+    });
+
+    // Thêm typeCode vào FormData
+    if (typeCode.length > 0) {
+        typeCode.forEach(function (code) {
+            formData.append('typeCode', code); // Lặp và thêm từng giá trị của typeCode
+        });
+    } else {
+        // Nếu typeCode bị thiếu, điều hướng lại trang với thông báo lỗi
+        alert("không được bỏ trống typecode!")
+        return;
     }
-  });
-function addOrUpdateBuilding(data){
+
+    // Thu thập các file từ input (nếu có)
+    var files = $('#files')[0].files; // Giả sử có input type="file" id="files"
+    if (files.length > 0) {
+        for (var i = 0; i < files.length; i++) {
+            formData.append('files', files[i]); // Thêm từng file vào FormData
+        }
+    }
+
+    // Gửi FormData qua AJAX
+    addOrUpdateBuilding(formData);
+});
+
+function addOrUpdateBuilding(formData) {
     $.ajax({
-          type:"POST", // THÊM TÒA NHÀ THÌ DÙNG POST
-          url: "/api/building", // thuộc tính url chỉ định địa chỉ endpoint (đường dẫn) mà yêu cầu AJAX sẽ gửi dữ liệu đến url này để server xử lý yêu cầu
-          data:JSON.stringify(data), // biến data là dữ liệu sẽ được gửi đến server và được ép theo kiểu JSON
-          contentType:"application/json",  // giống như một cái cờ báo hiệu, cho biết rằng dữ liệu gửi về server là kiểu JSON
-          dataType:"JSON",    // chỉ định kiểu dữ liệu mà client mong muốn nhận từ server sau khi server xử lý yêu cầu và phản hồi lại
-
-          success: function (respond) {
+        type: "POST", // Thêm tòa nhà thì dùng POST
+        url: "/api/building", // Đường dẫn đến endpoint của server
+        data: formData, // Gửi dữ liệu dưới dạng FormData
+        processData: false, // Không xử lý dữ liệu (để FormData tự xử lý)
+        contentType: false, // Để jQuery tự động cấu hình Content-Type
+        success: function (respond) {
             console.log(respond);
-            console.log("OK");
-            window.location.href = '<c:url value="/admin/building-edit?message=success"/>';
-          },
-          error: function(respond){
-            console.log(respond);
-            window.location.href = '<c:url value="/admin/building-edit?message=failed"/>';
-          }
+            console.log("Thêm/Cập nhật tòa nhà thành công.");
+            alert("Thêm/Cập nhật tòa nhà thành công.")
+            navigateWithRefresh('/admin/building-edit?message=success');
 
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            handleAjaxError(xhr, textStatus, errorThrown, () => addOrUpdateBuilding(formData));
+        }
     });
 }
-  // $('#btnCancel').click(function (){
-  //     e.preventDefault();  // Ngăn form submit nếu nút ở trong form
-  //     window.location.href = "/admin/building-list";
-  // });
+
+
+
+
 </script>
 
 </body>

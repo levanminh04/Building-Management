@@ -70,6 +70,8 @@
 
                         <div  class="widget-body" style="font-family: 'Times New Roman', Times, serif;">
                             <div class="widget-main">
+<%--                            Thẻ <form:form> là một thẻ hỗ trợ của Spring MVC dùng để hiển thị và xử lý các biểu mẫu (form). Nó cho phép tự động liên kết dữ liệu giữa form HTML và đối tượng model trong backend (hay còn gọi là Data Binding)--%>
+<%--                            Khi form được gửi (submit), dữ liệu được gửi ngược lại và tự động gắn (bind) vào object trong controller.--%>
                                 <form:form id = "listform" modelAttribute="modelSearch" action = "${buildingListURL}" method ="GET">
 <%--                     modelSearch chứa dữ liệu từ form sẽ được bind (gắn kết) vào thanh param khi form được hiển thị và khi submit. --%>
 <%--                     action="${buildingListURL}": Biến buildingListURL chứa URL đích mà dữ liệu từ form sẽ được gửi đến.--%>
@@ -201,15 +203,17 @@
                                                         <form:input class = "form-control" path = "managerphone"/>
                                                 </div>
                                             </div>
-                                            <div class = "col-xs-2">
-                                                <div>
-                                                    <label class = "name"> Chọn nhân viên phụ trách </label>
-                                                    <form:select class = "form-control" path = "staffid">
-                                                        <form:option value="">---Chọn nhân viên</form:option>
-                                                        <form:options items = "${staffList}"/>
-                                                    </form:select>
+                                            <security:authorize access="hasRole('ROLE_MANAGER')">
+                                                <div class = "col-xs-2">
+                                                    <div>
+                                                        <label class = "name"> Chọn nhân viên phụ trách </label>
+                                                        <form:select class = "form-control" path = "staffid">
+                                                            <form:option value="">---Chọn nhân viên</form:option>
+                                                            <form:options items = "${staffList}"/>
+                                                        </form:select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </security:authorize>
                                         </div>
                                     </div>
                                     <div class = "form-group">
@@ -240,9 +244,10 @@
                                 </form:form>
                             </div>
                         </div>
+                        <security:authorize access="hasRole('ROLE_MANAGER')">
+                            <div class = "pull-right" title = "Thêm tòa nhà">
 
-                        <div class = "pull-right" title = "Thêm tòa nhà">
-                            <a href="/admin/building-edit">
+                            <a href="javascript:void(0);" onclick="navigateWithRefresh('/admin/building-edit')" >
                                 <button class = "btn btn-info" id = "btnAddBuilding">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-add" viewBox="0 0 16 16">
                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0"/>
@@ -260,6 +265,7 @@
                             </button>
 
                         </div>
+                        </security:authorize>
                     </div>
                 </div>
             </div>
@@ -313,15 +319,17 @@
                                 <td>${item.brokerageFee}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs btn-group">
-                                        <button class="btn btn-xs btn-success" title="Giao tòa nhà" onclick="AssignmentBuilding(${item.id})">
-                                            <i class="ace-icon glyphicon glyphicon-list"></i>
-                                        </button>
 
-                                        <button class="btn btn-xs btn-danger" title="Xóa" onclick="deleteBuilding(${item.id})">
-                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                        </button>
+                                       <security:authorize access="hasRole('ROLE_MANAGER')">
+                                            <button class="btn btn-xs btn-success" title="Giao tòa nhà" onclick="AssignmentBuilding(${item.id})">
+                                                <i class="ace-icon glyphicon glyphicon-list"></i>
+                                            </button>
 
-                                        <a href="/admin/building-edit-${item.id}">
+                                            <button class="btn btn-xs btn-danger" title="Xóa" onclick="deleteBuilding(${item.id})">
+                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                            </button>
+                                       </security:authorize>
+                                        <a href="javascript:void(0);" onclick="navigateWithRefresh('/admin/building-edit-${item.id}')" >
                                             <button class="btn btn-xs btn-info" title="Sửa tòa nhà">
                                                 <i class="ace-icon fa fa-pencil bigger-120"></i>
                                             </button>
@@ -410,21 +418,6 @@
                             </thead>
 
                             <tbody>
-<%--                                        đổ dữ liệu trên database vào đây--%>
-
-<%--                                        không gắn cứng như này :               --%>
-
-<%--                            <tr>   <!-- 1 tr tương ứng với 1 hàng, 1 td tương ứng với 1 column  -->--%>
-<%--                                <td class="center">--%>
-<%--                                    <label class="pos-rel">--%>
-<%--                                        <input type="checkbox" class="ace" id = "checkbox_1" value = "1"  >--%>
-<%--                                        <span class="lbl"></span>--%>
-<%--                                    </label>--%>
-<%--                                </td>--%>
-
-<%--                                <td class="center">Lê Văn Minh</td>--%>
-<%--                            </tr>--%>
-
 
                             </tbody>
                         </table>
@@ -443,14 +436,60 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="confirmationModal" role="dialog" style="font-family: 'Times New Roman', Times, serif;">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Xác nhận</h4>
+            </div>
+
+            <div class="modal-body">
+                <input type = "hidden" id = "customerid" name = "customer" value ="1">
+            </div>
+
+            <div class="modal-body text-center">
+                <p>Bạn có chắc chắn muốn xóa thông tin này?</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger" id="btnConfirmDelete">Có</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
 <script src="assets/js/jquery.2.1.1.min.js"></script>
+
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
+
 
 
 <script>
+
+    // function ConfirmDelete(id) {
+    //     $('#confirmationModal').modal()
+    //     $('#customerid').val(id);
+    //      $('#btnConfirmDelete').click(function (e) {
+    //
+    //      });
+    //
+    // }
+
+
     function AssignmentBuilding(id) {
         $('#assignmentBuildingModal').modal()
         loadStaffs(id);
-        $('#buildingid').val(id); // nếu val() không truyền tham số thì là lấy giá trị  // đây là cái biến hidden đấy
+        $('#buildingid').val(id); // gán giá trị cho biến buildingid hidden trong modal để sau sử dụng cho việc giao tòa nhà
+                                  // nếu val() không truyền tham số thì là lấy giá trị  // đây là cái biến hidden đấy
                                   // nếu val(x) có truyền tham số thì là gán giá trị mới
         console.log($('#buildingid').val());
     }
@@ -470,7 +509,7 @@
                   row += '<tr>';
                     row += '<td class="center">' ;
                         row += '<label class="pos-rel">';
-                            row += '<input type="checkbox" class="ace" id = "checkbox_' + item.staffId +'"'+  'value = "' + item.staffId + '"' + item.checked + '>';
+                            row += '<input type="checkbox" class="ace" id = "checkbox_' + item.staffId + '"' + 'value = "' + item.staffId + '" ' + item.checked + '>';
                             row += '<span class="lbl"></span>';
                         row += '</label>';
                     row += '</td>';
@@ -480,14 +519,9 @@
               $('#staffList tbody').html(row);
               console.info(row);
           },
-          error: function(respond){
-              console.log("failed");
-
-            // console.log(respond);
-            //   console.log(respond.message);
-            //   console.log(respond.detail);
-              window.location.href = "/admin/building-list?message=error";
-          }
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => loadStaffs(id));
+            }
 
         });
     }
@@ -518,14 +552,9 @@
           success: function (respond) {
             window.location.href = "/admin/building-list?message=success";
           },
-          error: function(respond){
-              console.log(respond);
-            console.log("Giao không thành công");
-            console.log(respond);
-              console.log(respond.message);
-              console.log(respond.detail);
-            window.location.href = "/admin/building-list?message=error";
-          }
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => assignment(data));
+            }
 
         });
      }
@@ -555,17 +584,18 @@
           type:"DELETE", // XÓA TÒA NHÀ THÌ DÙNG DELETE
           url: "/api/building/" + data, // thuộc tính url chỉ định địa chỉ endpoint (đường dẫn) mà yêu cầu AJAX sẽ gửi dữ liệu đến url này để server xử lý yêu cầu
           data:JSON.stringify(data),
+          // data: JSON.stringify({ buildingIds: data }), // Truyền dữ liệu qua body dưới dạng JSON
+
           contentType:"application/json",
           dataType:"JSON",
-    
+
           success: function (respond) {
             // $("#h11").html(result);
             window.location.href = "/admin/building-list?message=success";
           },
-          error: function(respond){
-            console.log(respond);
-          }
-
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => deleteBuildings(data));
+            }
         });
     }
 

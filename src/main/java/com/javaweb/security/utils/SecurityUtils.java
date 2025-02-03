@@ -3,14 +3,15 @@ package com.javaweb.security.utils;
 import com.javaweb.model.dto.MyUserDetail;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SecurityUtils {
 
-    public static MyUserDetail getPrincipal() {
-        return (MyUserDetail) (SecurityContextHolder
+    public static UserDetails getPrincipal() {
+        return (UserDetails) (SecurityContextHolder
                 .getContext()).getAuthentication().getPrincipal();
     }
 

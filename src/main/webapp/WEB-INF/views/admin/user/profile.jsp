@@ -70,6 +70,9 @@
             </div>
         </div>
     </div>
+
+    <%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
     <script>
         $("#btnUpdateUser").click(function (event) {
             event.preventDefault();
@@ -88,11 +91,17 @@
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function (res) {
-                    window.location.href = "<c:url value='/admin/profile/"+res.userName+"?message=update_success'/>";
+                    window.location.href = "/admin/profile-" + username + "?message=update_success";
                 },
-                error: function (res) {
-                    console.log(res);
-                    window.location.href = "<c:url value='/admin/profile/"+username+"?message=error_system'/>";
+
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    // Kiểm tra điều kiện để xử lý logic phù hợp
+                    if (xhr.status === 401) {
+                        handleAjaxError(xhr, textStatus, errorThrown, () => updateInfo(data, username) );
+                    } else {
+                        window.location.href = "/admin/profile-" + username + "?message=error_system";
+                    }
                 }
             });
         }

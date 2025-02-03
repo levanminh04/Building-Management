@@ -101,67 +101,14 @@
 </head>
 <body>
 <div class="page-wrapper">
-    <%--<header>--%>
-        <%--<div class="p-4">--%>
-            <%--<div class="row navbar">--%>
-                <%--<div class="col-12 col-md-3">--%>
-                    <%--<div class="logo">--%>
-                        <%--<a href="/trang-chu">--%>
-                            <%--<img src="https://bizweb.dktcdn.net/100/328/362/themes/894751/assets/logo.png?1676257083798"--%>
-                                 <%--alt="">--%>
-                        <%--</a>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="col-12 col-md-6">--%>
-                    <%--<div class="item-menu">--%>
-                        <%--<div class="nav nav1">--%>
-                            <%--<div class="nav-item p-2">--%>
-                                <%--<a class="nav-item-link" href="/trang-chu">--%>
-                                    <%--<span>Trang chủ</span>--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="nav-item p-2">--%>
-                                <%--<a class="nav-item-link" href="">--%>
-                                <%--<span style="color: var(--primary-color);">Giới thiệu</span>--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="nav-item p-2">--%>
-                                <%--&lt;%&ndash;<a class="nav-item-link" href="./Duan.html">&ndash;%&gt;--%>
-                                <%--<a href='<c:url value='/san-pham'/>'>--%>
-                                    <%--<span>Sản phẩm</span>--%>
-                                    <%--&lt;%&ndash;<span style="color: var(--primary-color);">Sản phẩm</span>&ndash;%&gt;--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="nav-item p-2">--%>
-                                <%--&lt;%&ndash;<a class="nav-item-link" href="./TinTuc.html">&ndash;%&gt;--%>
-                                <%--<a href='<c:url value='/tin-tuc'/>'>--%>
-                                    <%--<span>Tin tức</span>--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                            <%--<div class="nav-item p-2">--%>
-                                    <%--<a href='<c:url value='/lien-he'/>'>--%>
-                                    <%--<span>Liên hệ</span>--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="col-12 col-md-3">--%>
-                    <%--<button class="btn btn-primary px-4">--%>
-                        <%--Liên hệ tư vấn--%>
-                    <%--</button>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</header>--%>
-    <!-- INTRO  -->
+
     <div class="intro text-center">
         <div class="title-page">Giới thiệu</div>
         <div class="row">
             <div class="col-xs-12 a-left">
                 <ul class="desc-intro">
                     <li class="home" style="color: #fff;">
-                        <a href="/trang-chu#"><span style="color: #fff;">Trang chủ</span></a>
+                        <a href="/trang-chu"><span style="color: #fff;">Trang chủ</span></a>
                         <span class="mx-1"> /</span>
                     </li>
                     <li class="intro-item"><span>Giới thiệu</span></li>
@@ -182,13 +129,13 @@
                         <div class="content-page rte minpage">
                             <p>Tòa nhà cao nhất Việt Nam The Sky Land&nbsp; 90&nbsp;của Công ty cổ phần công
                                 nghệ&nbsp;Sapo chính thức cho khách hàng đặt giữ chỗ chọn mua đợt đầu vào ngày
-                                Event&nbsp;<b>1/7/2016</b>. Sự kiện diễn ra lúc 18h tại nhà mẫu Sapohomes Central
+                                Event&nbsp;<b>1/7/2025</b>. Sự kiện diễn ra lúc 18h tại nhà mẫu Sapohomes Central
                                 Park, số 208 đường Nguyễn Chí Thanh, TP Hà Nội&nbsp;.– Đợt đầu đặt chỗ tầng 36 và 37
                                 chỉ dành cho người nước ngoài. Các tầng còn lại tất cả các khách hàng chọn căn đặt
-                                cọc từ ngày&nbsp;<b>19/7/2016</b>.</p>
+                                cọc từ ngày&nbsp;<b>19/7/2025</b>.</p>
                             <p><b>MỞ BÁN:</b></p>
-                            <p>+ Ngày công bố giá bán và cho khách đặt cọc từ:&nbsp;<b>19/7/2016</b></p>
-                            <p>+ Ngày tổ chức event mở bán:&nbsp;<b>25/7/2016</b></p>
+                            <p>+ Ngày công bố giá bán và cho khách đặt cọc từ:&nbsp;<b>19/7/2025</b></p>
+                            <p>+ Ngày tổ chức event mở bán:&nbsp;<b>25/7/2025</b></p>
                             <p>– Tòa nhà The Sky Land&nbsp; 90 tầng sở hữu những căn hộ đẳng cấp bậc nhất Việt Nam.
                                 Được nhiều các nhà đầu tư trong và ngoài nước đặc biệt quan tâm. Khi mở bán kỳ vọng
                                 sẽ trở thành hiện tượng của thị trường bất động sản trong nhiều năm trở lại đây.</p>
@@ -220,7 +167,7 @@
                             <p>Tầng hầm để xe (tầng B2, B3).</p>
                             <p><b>Thông tin khác:</b></p>
                             <p>–&nbsp;<b>Đơn vị thiết kế:</b>&nbsp;Tập đoàn Atkins (Anh Quốc)</p>
-                            <p>–&nbsp;<b>Năm khởi công:</b>&nbsp;2016</p>
+                            <p>–&nbsp;<b>Năm khởi công:</b>&nbsp;2025</p>
                             <p>–&nbsp;<b>Năm hoàn thành:</b>&nbsp;Dự kiến 2019</p>
                         </div>
 
@@ -257,7 +204,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Hotline</p>
-                                    <p class="desc-footer"><a class="a-text" href="#">098828</a></p>
+                                    <p class="desc-footer"><a class="a-text" href="#">0583122004</a></p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 text-center">
@@ -266,7 +213,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Email</p>
-                                    <p class="desc-footer"><a class="a-text" href="#">vsh@gmail.com</a>
+                                    <p class="desc-footer"><a class="a-text" href="#">levanminh031204@gmail.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -324,6 +271,8 @@
         </div>
     </footer>
 </div>
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>

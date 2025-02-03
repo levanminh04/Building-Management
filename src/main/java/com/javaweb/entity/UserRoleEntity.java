@@ -1,9 +1,9 @@
 package com.javaweb.entity;
 
 
-//import javax.persistence.*;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Table;
+//import jakarta.persistence.*;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.Table;
 //
 //@Entity
 //@Table(name = "user_role")

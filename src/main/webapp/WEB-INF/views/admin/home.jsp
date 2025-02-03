@@ -5,7 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <title>Trang chủ</title> -->
 </head>
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
 <body>
+
+
 <div class="main-content">
     <div class="main-content-inner">
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -24,6 +27,7 @@
             </div>
         </div>
     </div>
+
 </div><!-- /.main-content -->
 </body>
 </html>

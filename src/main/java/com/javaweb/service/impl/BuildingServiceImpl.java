@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,8 +48,7 @@ public class BuildingServiceImpl implements BuildingService {
     private RentAreaRepository rentAreaRepository;
     @Autowired
     private AssignmentBuildingService assignmentBuildingService;
-    @Autowired
-    private BuildingService buildingService;
+
     @Autowired
     private BuildingConverter buildingConverter;
     @Autowired
@@ -76,7 +76,7 @@ public class BuildingServiceImpl implements BuildingService {
         }
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setData(staffResponseDTOList);
-        responseDTO.setMessage("hello mother fucker");
+        responseDTO.setMessage("danh sách nhân viên");
         return responseDTO;
     }
 
@@ -106,13 +106,10 @@ public class BuildingServiceImpl implements BuildingService {
 
 
     @Override
-    public BuildingDTO addOrUpdateBuilding(BuildingDTO buildingDTO) {
-
-        BuildingEntity buildingEntity = buildingConverter.toBuildingEntity(buildingDTO);
-
-        buildingRepository.save(buildingEntity); // có id thì hàm save tự hiểu là update, không có id thì là thêm mới
-        return buildingDTO;
+    public void addOrUpdateBuilding(BuildingDTO buildingDTO) throws IOException {
+        buildingConverter.toBuildingEntity(buildingDTO); // Không cần gọi save lần nữa
     }
+
 
     @Override
     public BuildingDTO findById(Long id) {
@@ -123,4 +120,16 @@ public class BuildingServiceImpl implements BuildingService {
     public ResponseDTO listStaffs(Long buildingId) {
         return null;
     }
+
+    @Override
+    public List<BuildingEntity> getAllBuildings() {
+        return buildingRepository.findAll();
+    }
+
+    @Override
+    public BuildingEntity getBuildingById(Long id) {
+        return buildingRepository.findById(id).orElse(null);
+    }
+
+
 }

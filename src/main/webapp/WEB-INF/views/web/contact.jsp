@@ -12,46 +12,7 @@
 </head>
 <body>
 <div class="page-wrapper">
-    <%--<header>--%>
-        <%--<!-- MENU  -->--%>
-        <%--<div class="p-4">--%>
-            <%--<div class="row navbar">--%>
-                <%--<div class="col-12 col-md-3">--%>
-                    <%--<div class="logo">--%>
-                        <%--<a href="">--%>
-                            <%--<img src="https://bizweb.dktcdn.net/100/328/362/themes/894751/assets/logo.png?1676257083798"--%>
-                                 <%--alt="">--%>
-                        <%--</a>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="col-12 col-md-6">--%>
-                    <%--<div class="item-menu">--%>
-                        <%--<div class="nav nav1">--%>
-                            <%--<div class="nav-item p-2"><a class="nav-item-link" href="/trang-chu"><span>Trang--%>
-                                            <%--chủ</span></a></div>--%>
-                            <%--<div class="nav-item p-2"><a class="nav-item-link" href="/gioi-thieu"><span>Giới--%>
-                                            <%--thiệu</span></a></div>--%>
-                            <%--<div class="nav-item p-2"><a class="nav-item-link" href="/san-pham"><span>Sản phẩm--%>
-                                        <%--</span></a></div>--%>
-                            <%--<div class="nav-item p-2"><a class="nav-item-link" href="/tin-tuc"><span>Tin--%>
-                                            <%--tức</span></a></div>--%>
-                            <%--<div class="nav-item p-2">--%>
-                                <%--<a class="nav-item-link" href="/lien-he">--%>
-                                    <%--<span style="color: var(--primary-color);">Liên hệ</span>--%>
-                                <%--</a>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="col-12 col-md-3">--%>
-                    <%--<button class="btn btn-primary px-4">--%>
-                        <%--Liên hệ tư vấn--%>
-                    <%--</button>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</header>--%>
-    <!-- INTRO  -->
+
     <div class="intro text-center mb-5">
         <div class="title-page">Liên hệ</div>
         <div class="row">
@@ -91,7 +52,7 @@
                 <div class="col-12 col-md-6">
                     <h2 class="title-lienhe"><strong>Công ty cổ phần bất động sản SkyLand</strong></h2>
                     <div class="desc-lienhe">
-                        <p>Được thành lập vào ngày 20/08/2008 với niềm đam mê và khát vọng thành công trong lĩnh vực
+                        <p>Được thành lập vào ngày 20/08/2019 với niềm đam mê và khát vọng thành công trong lĩnh vực
                             bất động sản. Nhờ chiến lược rõ ràng và hướng đi đúng, SkyLand đã nhanh chóng phát triển
                             và đạt được những thành công nhất định.</p>
                         <ul class="margin-bottom-15 link" style="list-style-type: none;">
@@ -109,25 +70,25 @@
                             <li>
                                 <span class="block_fonticon"><i class="fa fa-envelope icon-lienhe"></i></span>
                                 <span class="title-li">Email: <a style="color: #434a6e;"
-                                                                 href="">vsh@gmail.com</a></span>
+                                                                 href="">levanminh031204@gmail.com</a></span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <h2 class="title-lienhe"><strong>Liên hệ với chúng tôi</strong></h2>
-                    <form>
+                    <form id = "forminfo">
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Họ và tên">
+                                <input type="text" class="form-control" name = "fullname" placeholder="Họ và tên">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Email">
+                                <input type="text" class="form-control" name = "email" placeholder="Email">
                             </div>
                         </div>
-                        <input type="text" class="form-control mt-3" placeholder="Số điện thoại">
-                        <input type="text" class="form-control mt-3" placeholder="Nội dung">
-                        <button class="btn btn-primary px-4 mt-3">
+                        <input type="text" class="form-control mt-3" name = "phone"  placeholder="Số điện thoại">
+                        <input type="text" class="form-control mt-3" name = "demand"  placeholder="Nội dung">
+                        <button class="btn btn-primary px-4 mt-3" id="btnSendContactInfo">
                             Gửi liên hệ
                         </button>
                     </form>
@@ -162,7 +123,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Hotline</p>
-                                    <p class="desc-footer"><a class="a-text" href="#">098828</a></p>
+                                    <p class="desc-footer"><a class="a-text" href="#">0583122004</a></p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 text-center">
@@ -171,7 +132,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Email</p>
-                                    <p class="desc-footer"><a class="a-text" href="#">vsh@gmail.com</a>
+                                    <p class="desc-footer"><a class="a-text" href="#">levanminh031204@gmail.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -235,5 +196,72 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
+<script>
+
+    $('#btnSendContactInfo').click(function (event) {
+        event.preventDefault();
+        var data = {};
+        var formData = $('#forminfo').serializeArray();
+        $.each(formData, function (i, v) {
+            data[v.name] = v.value;
+        })
+        data['status'] = 'Chưa xử lý'
+        if (!data['fullname'] || !data['phone']) {
+            alert('Vui lòng không bỏ trống họ và tên và số điện thoại.');
+            return;
+        }
+        else{
+            SendContactInfo(data)
+        }
+
+    });
+
+    function SendContactInfo(data){
+        $.ajax({
+            type:"POST", // THÊM TÒA NHÀ THÌ DÙNG POST
+            url: "/api/customer/contact", // thuộc tính url chỉ định địa chỉ endpoint (đường dẫn) mà yêu cầu AJAX sẽ gửi dữ liệu đến url này để server xử lý yêu cầu
+            data:JSON.stringify(data), // biến data là dữ liệu sẽ được gửi đến server và được ép theo kiểu JSON
+            contentType:"application/json",  // giống như một cái cờ báo hiệu, cho biết rằng dữ liệu gửi về server là kiểu JSON
+            dataType:"JSON",    // chỉ định kiểu dữ liệu mà client mong muốn nhận từ server sau khi server xử lý yêu cầu và phản hồi lại
+
+            success: function (respond) {
+                console.log(respond);
+                console.log("OK");
+                alert('Gửi liên hệ thành công.');
+                window.location.href = '<c:url value="/lien-he?message=success"/>';
+            },
+            error: function(respond){
+                console.log(respond);
+                window.location.href = '<c:url value="/lien-he?message=failed"/>';
+            }
+
+        });
+    }
+
+    // document.getElementById('sendContactInfo').addEventListener('click', function () {
+    //     // Lấy giá trị từ các trường
+    //     const fullName = document.getElementById('fullName').value.trim();
+    //     const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    //
+    //     // Kiểm tra nếu thiếu thông tin
+    //     if (!fullName || !phoneNumber) {
+    //         alert('Vui lòng điền đầy đủ Họ và tên và Số điện thoại.');
+    //         return; // Dừng lại, không gửi form
+    //     }
+    //
+    //     // Nếu tất cả trường hợp lệ, bạn có thể thực hiện tiếp hành động gửi form (ví dụ gọi API)
+    //     alert('Gửi liên hệ thành công!');
+    // });
+
+
+
+
+</script>
+
+
 </body>
 </html>

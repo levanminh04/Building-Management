@@ -10,5 +10,5 @@ public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>,
 //    BuildingEntity findById(Long buildingid);
 //    những cái hàm như findById này nó sẵn luôn rồi không cần khai báo đâu, chỉ việc '.' mà dùng thôi , khai báo nó còn sai thêm đấy
       void deleteByIdIn(List<Long> ids);
-
+//      BuildingEntity findById(long id);
 }

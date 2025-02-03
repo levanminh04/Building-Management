@@ -13,7 +13,6 @@
         Danh sách người dùng
     </title>
 </head>
-
 <body>
 <div class="main-content">
     <form:form modelAttribute="model" action="${formUrl}" id="listForm" method="GET">
@@ -29,7 +28,7 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="<c:url value="/admin/home"/>">
+                        <a href="javascript:void(0);" onclick="navigateWithRefresh('/admin/home')" >
                                 <%--<spring:message code="label.home"/>--%>
                             Trang chủ
                         </a>
@@ -104,7 +103,7 @@
                                                data-toggle="tooltip"
                                                 <%--title='<spring:message code="label.user.add"/>'--%>
                                                title="Thêm người dùng"
-                                               href='<c:url value="/admin/user-edit"/>'>
+                                               href="javascript:void(0);" onclick="navigateWithRefresh('/admin/user-edit')"
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -125,46 +124,55 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-responsive">
-                                    <display:table name="model.listResult" cellspacing="0" cellpadding="0"
-                                                   requestURI="${formUrl}" partialList="true" sort="external"
-                                                   size="${model.totalItems}" defaultsort="2" defaultorder="ascending"
-                                                   id="tableList" pagesize="${model.maxPageItems}"
-                                                   export="false"
-                                                   class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer"
-                                                   style="margin: 3em 0 1.5em;">
-                                        <display:column title="<fieldset class='form-group'>
-												        <input type='checkbox' id='checkAll' class='check-box-element'>
-												        </fieldset>" class="center select-cell"
-                                                        headerClass="center select-cell">
-                                            <fieldset>
-                                                <input type="checkbox" name="checkList" value="${tableList.id}"
-                                                       id="checkbox_${tableList.id}" class="check-box-element"/>
-                                            </fieldset>
-                                        </display:column>
-                                        <display:column headerClass="text-left" property="userName" title="Tên"/>
-                                        <display:column headerClass="text-left" property="fullName" title="full name"/>
-                                        <display:column headerClass="col-actions" title="Thao tác">
-                                            <c:if test="${tableList.roleCode != 'MANAGER'}">
-                                                <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                                   title="Cập nhật người dùng"
-                                                   href='<c:url value="/admin/user-edit-${tableList.id}"/>'>
-                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${tableList.roleCode == 'MANAGER'}">
-                                                <p>Không đươc thao tác</p>
-                                            </c:if>
-                                        </display:column>
-                                    </display:table>
+                                    <table class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer" style="margin: 3em 0 1.5em;">
+                                        <thead>
+                                            <tr>
+                                                <th class="center select-cell">
+                                                    <fieldset class='form-group'>
+                                                        <input type='checkbox' id='checkAll' class='check-box-element'>
+                                                    </fieldset>
+                                                </th>
+                                                <th class="text-left">Tên</th>
+                                                <th class="text-left">Full Name</th>
+                                                <th class="col-actions">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="i" items="${model.listResult}">
+                                                <tr>
+                                                    <td class="center select-cell">
+                                                        <fieldset>
+                                                            <input type="checkbox" name="checkList" value="${i.id}" id="checkbox_${i.id}" class="check-box-element"/>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td class="text-left">${i.userName}</td>
+                                                    <td class="text-left">${i.fullName}</td>
+                                                    <td class="col-actions">
+                                                        <c:if test="${i.roleCode != 'MANAGER'}">
+                                                            <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip" title="Cập nhật người dùng"
+                                                            href="javascript:void(0);" onclick="navigateWithRefresh('/admin/user-edit-${i.id}')"  >
+                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                            </a>
+                                                        </c:if>
+                                                        <c:if test="${i.roleCode == 'MANAGER'}">
+                                                            <p>Không được thao tác</p>
+                                                        </c:if>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </div>
+</div>
                     </div>
                 </div>
             </div>
         </div>
     </form:form>
 </div>
+
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -180,11 +188,17 @@
             var dataArray = $('tbody input[type=checkbox]:checked').map(function () {
                 return $(this).val();
             }).get();
-            deleteUser(dataArray);
+            deleteUsers(dataArray);
         });
     }
 
-    function deleteUser(data) {
+
+    function deleteUser(userID){   // nút xóa trong bảng, xóa đơn cột
+        var data = [userID]; // đơn cột nhưng vẫn cứ quy về thành 1 mảng cho đồng bộ với trường hợp xóa đa cột, xử lý chung trong 1 hàm luôn
+        deleteUsers(data);
+    }
+
+    function deleteUsers(data) {
         $.ajax({
             url: '${formAjax}/',
             type: 'DELETE',
@@ -194,9 +208,15 @@
             success: function (res) {
                 window.location.href = "<c:url value='/admin/user-list?message=delete_success'/>";
             },
-            error: function (res) {
-                console.log(res);
-                window.location.href = "<c:url value='/admin/user-list?message=error_system'/>";
+
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr);
+                // Kiểm tra điều kiện để xử lý logic phù hợp
+                if (xhr.status === 401) { // Ví dụ: nếu server trả lỗi 500
+                    handleAjaxError(xhr, textStatus, errorThrown, () => deleteUsers(data) );
+                } else {
+                    window.location.href = "<c:url value='/admin/user-list?message=error_system'/>";
+                }
             }
         });
     }

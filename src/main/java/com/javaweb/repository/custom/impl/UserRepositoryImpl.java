@@ -5,9 +5,9 @@ import com.javaweb.repository.custom.UserRepositoryCustom;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -24,12 +24,21 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 		return query.getResultList();
 	}
 
+	//	@Override
+//	public List<UserEntity> getAllUsers(Pageable pageable) {
+//
+//		StringBuilder sql = new StringBuilder(buildQueryFilter())
+//				.append(" LIMIT ").append(pageable.getPageSize()).append("\n")
+//				.append(" OFFSET ").append(pageable.getOffset());
+//		System.out.println("Final query: " + sql.toString());
+//
+//		Query query = entityManager.createNativeQuery(sql.toString(), UserEntity.class);
+//		return query.getResultList();
+//	}
 	@Override
-	public List<UserEntity> getAllUsers(Pageable pageable) {
+	public List<UserEntity> getAllUsers() {
 
-		StringBuilder sql = new StringBuilder(buildQueryFilter())
-				.append(" LIMIT ").append(pageable.getPageSize()).append("\n")
-				.append(" OFFSET ").append(pageable.getOffset());
+		StringBuilder sql = new StringBuilder(buildQueryFilter());
 		System.out.println("Final query: " + sql.toString());
 
 		Query query = entityManager.createNativeQuery(sql.toString(), UserEntity.class);

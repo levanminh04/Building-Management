@@ -23,10 +23,16 @@ public class JpaAuditingConfig {
         @Override
         public Optional<String> getCurrentAuditor() {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication in AuditorAware: " + authentication);
             if (authentication == null || !authentication.isAuthenticated()) {
-                return null;
+                return Optional.empty();
             }
             return Optional.of(authentication.getName());
         }
     }
 }
+
+
+
+
+

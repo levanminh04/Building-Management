@@ -8,8 +8,8 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -42,6 +42,8 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             url = SystemConstant.HOME;
         } else if (isAdmin(roles)) {
             url = SystemConstant.ADMIN_HOME;
+        } else if (isStaff(roles)) {
+            url = SystemConstant.ADMIN_HOME;
         }
         return url;
     }
@@ -63,6 +65,12 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private boolean isUser(List<String> roles) {
         if (roles.contains(SystemConstant.USER_ROLE)) {
+            return true;
+        }
+        return false;
+    }
+    private boolean isStaff(List<String> roles) {
+        if (roles.contains(SystemConstant.STAFF_ROLE)) {
             return true;
         }
         return false;

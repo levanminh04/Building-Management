@@ -25,4 +25,13 @@ public enum  buildingType {
         }
         return listType;
     }
+    // Phương thức tìm giá trị enum theo code (e.g., "TANG_TRET" -> "Tầng Trệt")
+    public static String fromCode(String code) {
+        for (buildingType item : buildingType.values()) {
+            if (item.name().equalsIgnoreCase(code)) { // So sánh tên enum
+                return item.getCode();
+            }
+        }
+        return "Không xác định"; // Trả về giá trị mặc định nếu không tìm thấy
+    }
 }

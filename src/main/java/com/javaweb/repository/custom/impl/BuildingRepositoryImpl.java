@@ -6,9 +6,9 @@ import com.javaweb.entity.BuildingEntity;
 import com.javaweb.repository.BuildingRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -106,7 +106,7 @@ public class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
     public List<BuildingEntity> findAll(BuildingSearchBuilder buildingSearchBuilder) {
 
         StringBuilder sql = new StringBuilder(
-                "SELECT * from building b ");
+                "SELECT b.* from building b "); // thêm b.*, không được select * from,  vì với hibernate 6.x, Khi có hai cột có cùng tên (như id từ cả hai bảng), nó sẽ không thể phân biệt được và gây ra lỗi NonUniqueDiscoveredSqlAliasException. select * from nó lấy cả 2 cáo cột id của cả 2 bảng join với nhau
         joinTable(buildingSearchBuilder, sql);
         StringBuilder where = new StringBuilder(" WHERE 1 = 1");
         normalQuery(buildingSearchBuilder, where);

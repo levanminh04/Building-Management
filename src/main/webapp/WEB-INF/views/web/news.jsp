@@ -11,6 +11,10 @@
     <title>Tin tức</title>
 </head>
 <body>
+
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
+
 <!-- MENU  -->
 <div class="page-wrapper">
     <%--<header>--%>
@@ -310,7 +314,7 @@
                             </div>
                             <div class="content-center-footer">
                                 <p class="mb-1 mt-3">Hotline</p>
-                                <p class="desc-footer"><a class="a-text" href="#">098828</a></p>
+                                <p class="desc-footer"><a class="a-text" href="#">0583122004</a></p>
                             </div>
                         </div>
                         <div class="col-12 col-md-4 text-center">
@@ -319,7 +323,7 @@
                             </div>
                             <div class="content-center-footer">
                                 <p class="mb-1 mt-3">Email</p>
-                                <p class="desc-footer"><a class="a-text" href="#">vsh@gmail.com</a>
+                                <p class="desc-footer"><a class="a-text" href="#">levanminh031204@gmail.com</a>
                                 </p>
                             </div>
                         </div>

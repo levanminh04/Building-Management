@@ -6,13 +6,17 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 
 @Repository
@@ -66,6 +70,11 @@ public class RoleRepositoryImpl implements RoleRepository {
 	}
 
 	@Override
+	public void deleteAllById(Iterable<? extends Long> longs) {
+
+	}
+
+	@Override
 	public void deleteAll(Iterable<? extends RoleEntity> entities) {
 
 	}
@@ -106,7 +115,22 @@ public class RoleRepositoryImpl implements RoleRepository {
 	}
 
 	@Override
+	public <S extends RoleEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
+		return Collections.emptyList();
+	}
+
+	@Override
 	public void deleteInBatch(Iterable<RoleEntity> entities) {
+
+	}
+
+	@Override
+	public void deleteAllInBatch(Iterable<RoleEntity> entities) {
+
+	}
+
+	@Override
+	public void deleteAllByIdInBatch(Iterable<Long> longs) {
 
 	}
 
@@ -117,6 +141,16 @@ public class RoleRepositoryImpl implements RoleRepository {
 
 	@Override
 	public RoleEntity getOne(Long aLong) {
+		return null;
+	}
+
+	@Override
+	public RoleEntity getById(Long aLong) {
+		return null;
+	}
+
+	@Override
+	public RoleEntity getReferenceById(Long aLong) {
 		return null;
 	}
 
@@ -148,5 +182,10 @@ public class RoleRepositoryImpl implements RoleRepository {
 	@Override
 	public <S extends RoleEntity> boolean exists(Example<S> example) {
 		return false;
+	}
+
+	@Override
+	public <S extends RoleEntity, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+		return null;
 	}
 }

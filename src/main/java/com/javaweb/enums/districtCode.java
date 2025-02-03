@@ -31,4 +31,12 @@ public enum  districtCode {
         }
         return listType;
     }
+    public static String fromCode(String code) {
+        for (districtCode item : districtCode.values()) {
+            if (item.name().equalsIgnoreCase(code)) { // So sánh tên enum
+                return item.getDistrictName();
+            }
+        }
+        return "Không xác định"; // Trả về giá trị mặc định nếu không tìm thấy
+    }
 }

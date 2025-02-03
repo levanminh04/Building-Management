@@ -283,6 +283,15 @@ a{
   height: 15.525rem;
 }
 
+/*.product1-image, .product2-image, .product3-image {*/
+/*  background: none !important;*/
+/*}*/
+
+.no-bg {
+  background: none !important;
+}
+
+
 .product1-conntent {
   padding: 1.2rem 1.2rem 0.8rem;
 }

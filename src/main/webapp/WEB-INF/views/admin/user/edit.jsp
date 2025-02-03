@@ -94,6 +94,9 @@
         </div>
     </div>
 </div>
+
+<%@ include file="/WEB-INF/views/token-utils.jsp" %>
+
 <script>
     $("#btnAddOrUpdateUsers").click(function (event) {
         event.preventDefault();
@@ -108,9 +111,11 @@
             if (roleCode != '') {
                 updateUser(dataArray, $('#userId').val());
             } else {
-                window.location.href = "<c:url value='/admin/user-edit-"+userId+"?message=role_require'/>";
+                navigateWithRefresh('/admin/user-edit-"+userId+"?message=role_require');
+
             }
         }
+
         else {
             var userName = dataArray['userName'];
             var roleCode = dataArray['roleCode'];
@@ -118,7 +123,7 @@
                 $('#loading_image').show();
                 addUser(dataArray);
             } else {
-                window.location.href = "<c:url value='/admin/user-edit?message=username_role_require'/>";
+                navigateWithRefresh('/admin/user-edit?message=username_role_require');
             }
         }
     });
@@ -139,9 +144,13 @@
             success: function (res) {
                 $('#loading_image').hide();
                 window.location.href = "<c:url value='/admin/user-edit-"+res.id+"?message=insert_success'/>";
+
             },
-            error: function (res) {
-                window.location.href = "<c:url value='/admin/user-edit-"+res.id+"?message=error_system'/>";
+            <%--error: function (res) {--%>
+            <%--    window.location.href = "<c:url value='/admin/user-edit-"+res.id+"?message=error_system'/>";--%>
+            <%--}--%>
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => addUser(data));
             }
         });
     }
@@ -156,8 +165,11 @@
             success: function (res) {
                 window.location.href = "<c:url value='/admin/user-edit-"+res.id+"?message=update_success'/>";
             },
-            error: function (res) {
-                window.location.href = "<c:url value='/admin/user-edit-"+id+"?message=error_system'/>";
+            <%--error: function (res) {--%>
+            <%--    window.location.href = "<c:url value='/admin/user-edit-"+id+"?message=error_system'/>";--%>
+            <%--}--%>
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => updateUser(data, id));
             }
         });
     }
@@ -171,8 +183,11 @@
                 $('#loading_image').hide();
                 window.location.href = "<c:url value='/admin/user-edit-"+res.id+"?message=reset_password_success'/>";
             },
-            error: function (res) {
-                window.location.href = "<c:url value='/admin/user-edit-"+id+"?message=error_system'/>";
+            <%--error: function (res) {--%>
+            <%--    window.location.href = "<c:url value='/admin/user-edit-"+id+"?message=error_system'/>";--%>
+            <%--}--%>
+            error: function (xhr, textStatus, errorThrown) {
+                handleAjaxError(xhr, textStatus, errorThrown, () => resetPassword(id));
             }
         });
     }
