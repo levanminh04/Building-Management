@@ -99,7 +99,7 @@ public class UserAPI {
             ResponseCookie newAccessTokenCookie = ResponseCookie.from("token", newAccessToken)
                     .httpOnly(true)
                     .secure(true)
-                    .maxAge(Duration.ofMinutes(15))
+                    .maxAge(Duration.ofMinutes(60))
                     .path("/")
                     .build();
 

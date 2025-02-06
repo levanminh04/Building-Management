@@ -68,7 +68,7 @@ public class UserController {
 			ResponseCookie jwtCookie = ResponseCookie.from("token", token)
 					.httpOnly(true) // Cookie chỉ có thể được truy cập bởi server
 					.secure(true) // Bật khi sử dụng HTTPS
-					.maxAge(Duration.ofMinutes(1))
+					.maxAge(Duration.ofMinutes(60))
 					.path("/") // Đảm bảo cookie có sẵn trên tất cả đường dẫn
 					.build();
 

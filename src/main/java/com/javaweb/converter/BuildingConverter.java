@@ -8,6 +8,7 @@ import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.response.BuildingResponse;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.service.CloudinaryService;
+import com.javaweb.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class BuildingConverter {
 
     private final BuildingRepository buildingRepository;
 
+    private final FileService fileService;
 
     @Transactional
     public BuildingEntity toBuildingEntity(BuildingDTO buildingDTO) throws IOException {
@@ -45,17 +47,25 @@ public class BuildingConverter {
 
         // Upload file và tạo FileEntity
         List<MultipartFile> files = buildingDTO.getFiles();
-        for (MultipartFile file : files) {
-            Map result = cloudinaryService.uploadFile(file);
-            FileEntity fileEntity = FileEntity.builder()
-                    .name(result.get("original_filename").toString())
-                    .fileUrl(result.get("url").toString())
-                    .fileId(result.get("public_id").toString())
-                    .buildingid(buildingEntity.getId()) // 🔥 Đảm bảo ID không null
-                    .buildingEntity(buildingEntity)
-                    .build();
-            buildingEntity.getFileEntities().add(fileEntity);
+
+        if (files != null) {
+            for (MultipartFile file : files) {
+                Map result = cloudinaryService.uploadFile(file);
+                FileEntity fileEntity = FileEntity.builder()
+                        .name(result.get("original_filename").toString())
+                        .fileUrl(result.get("url").toString())
+                        .fileId(result.get("public_id").toString())
+                        .buildingid(buildingEntity.getId()) // 🔥 Đảm bảo ID không null
+                        .buildingEntity(buildingEntity)
+                        .build();
+                buildingEntity.getFileEntities().add(fileEntity);
+            }
         }
+        else{
+            List<FileEntity> fileEntityList = fileService.findByBuildingid(buildingDTO.getId());
+            buildingEntity.getFileEntities().addAll(fileEntityList);
+        }
+
 
         // Lưu lại building để cập nhật danh sách fileEntities
         return buildingRepository.save(buildingEntity);

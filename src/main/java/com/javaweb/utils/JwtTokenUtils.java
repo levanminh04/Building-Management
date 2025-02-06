@@ -39,7 +39,7 @@ public class JwtTokenUtils {
             return Jwts.builder()
                     .setClaims(claims)
                     .setSubject(userEntity.getUsername()) // "Subject" là một registered claim (thông tin) cơ bản trong JWT, setSubject() thường được dùng để lưu trữ thông tin nhận dạng của người dùng trong token, chẳng hạn như username hoặc userId. Đây là cách phổ biến để xác định người dùng mà token này đại diện.
-                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15))
+                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                     .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                     .compact(); // compact() sẽ Trả về token dạng string
 
