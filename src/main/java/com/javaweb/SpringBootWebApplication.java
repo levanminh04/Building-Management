@@ -1,5 +1,6 @@
 package com.javaweb;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,6 +33,17 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
         FilterRegistrationBean<ErrorPageFilter> bean = new FilterRegistrationBean<>(new ErrorPageFilter());
         bean.setEnabled(false);
         return bean;
+    }
+    @PostConstruct
+    public void logDatabaseConfig() {
+        System.out.println("🔍 Database Configuration:");
+        System.out.println("MYSQLHOST: " + System.getenv("MYSQLHOST"));
+        System.out.println("MYSQLPORT: " + System.getenv("MYSQLPORT"));
+        System.out.println("MYSQLDATABASE: " + System.getenv("MYSQLDATABASE"));
+        System.out.println("MYSQLUSER: " + System.getenv("MYSQLUSER"));
+        System.out.println("MYSQLPASSWORD: " + System.getenv("MYSQLPASSWORD"));
+        System.out.println("RAILWAY_TCP_PROXY_DOMAIN: " + System.getenv("RAILWAY_TCP_PROXY_DOMAIN"));
+        System.out.println("RAILWAY_TCP_PROXY_PORT: " + System.getenv("RAILWAY_TCP_PROXY_PORT"));
     }
 
 }
