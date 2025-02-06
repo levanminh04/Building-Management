@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MySiteMeshFilter extends ConfigurableSiteMeshFilter {
-
+//ok
     @Override
     protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
         // Áp dụng decorator cho các đường dẫn
