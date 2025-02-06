@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- Decorators -->
+    <decorator name="web" page="/decorators/JSP/web.jsp"/>
+    <decorator name="admin" page="/decorators/JSP/admin.jsp"/>
+    <decorator name="login" page="/decorators/JSP/login.jsp"/>
+
+    <!-- Mapping rules -->
+    <mapping path="/admin/*" name="admin" decorator="admin.jsp"/>
+    <mapping path="/trang-chu" name="web" decorator="web.jsp"/>
+    <mapping path="/lien-he" name="web" decorator="web.jsp"/>
+    <mapping path="/gioi-thieu" name="web" decorator="web.jsp"/>
+    <mapping path="/tin-tuc" name="web" decorator="web.jsp"/>
+    <mapping path="/san-pham" name="web" decorator="web.jsp"/>
+<!--    <mapping path="/properties" name="web" decorator="web.jsp"/>-->
+    <mapping path="/login" name="login" decorator="login.jsp"/>
+    <mapping path="/api/*" name="api" exclude="true"/>
+    <mapping path="/errors/*" name="api" exclude="true"/>
+</sitemesh>

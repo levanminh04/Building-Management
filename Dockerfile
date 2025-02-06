@@ -25,10 +25,8 @@ WORKDIR /app
 COPY target/myapp.war /app/myapp.war
 
 # Cấu hình biến môi trường để Spring Boot chạy với port 8080
-ENV SERVER_PORT=8080
+ENV SERVER_PORT=${PORT}
 
-# Mở cổng 8080
-EXPOSE 8080
 
 # Chạy ứng dụng với Tomcat Embedded
 CMD ["java", "-jar", "/app/myapp.war"]
