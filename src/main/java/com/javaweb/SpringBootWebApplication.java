@@ -37,11 +37,11 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
     @PostConstruct
     public void logDatabaseConfig() {
         System.out.println("🔍 Database Configuration:");
-        System.out.println("MYSQLHOST: " + System.getenv("MYSQLHOST"));
-        System.out.println("MYSQLPORT: " + System.getenv("MYSQLPORT"));
+        System.out.println("MYSQLHOST: " + System.getenv("REDISHOST"));
+        System.out.println("MYSQLPORT: " + System.getenv("REDISPORT"));
         System.out.println("MYSQLDATABASE: " + System.getenv("MYSQLDATABASE"));
-        System.out.println("MYSQLUSER: " + System.getenv("MYSQLUSER"));
-        System.out.println("MYSQLPASSWORD: " + System.getenv("MYSQLPASSWORD"));
+        System.out.println("MYSQLUSER: " + System.getenv("REDISUSER"));
+        System.out.println("MYSQLPASSWORD: " + System.getenv("REDISPASSWORD"));
         System.out.println("RAILWAY_TCP_PROXY_DOMAIN: " + System.getenv("RAILWAY_TCP_PROXY_DOMAIN"));
         System.out.println("RAILWAY_TCP_PROXY_PORT: " + System.getenv("RAILWAY_TCP_PROXY_PORT"));
     }
