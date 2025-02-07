@@ -1,6 +1,12 @@
-Building Management Web Application
+<!-- README.md -->
 
-Overview
+<h1 align="center"><font size="7" color="#2E86C1">Building Management Application</font></h1>
+<p align="center"><font size="4">A Comprehensive Spring Boot Web RESTful Project for Java Backend Development</font></p>
+<br/>
+
+<hr/>
+
+<h2><font color="#117864">Overview</font></h2>
 
 This project is a RESTful web application developed using Spring Boot for backend services and jQuery AJAX for API calls. The application facilitates the management of buildings, customers, and transactions for a property management company. It provides distinct functionalities for different user roles including managers, staff, and general users.
 
