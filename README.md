@@ -1,173 +1,164 @@
 <!-- README.md -->
 
 <h1 align="center"><font size="7" color="#2E86C1">Building Management Application</font></h1>
-<p align="center"><font size="4">A Comprehensive Spring Boot Web RESTful Project for Java Backend Development</font></p>
+<p align="center"><font size="4">A Spring Boot Web Application Combining RESTful API and MVC for Java Backend Development</font></p>
+
 <br/>
 
 <hr/>
 
 <h2><font color="#117864">Overview</font></h2>
-
-This project is a RESTful web application developed using Spring Boot for backend services and jQuery AJAX for API calls. The application facilitates the management of buildings, customers, and transactions for a property management company. It provides distinct functionalities for different user roles including managers, staff, and general users.
-
-Features
-
-User Roles and Permissions
-
-General User:
-
-View the list of buildings.
-
-Submit contact information for sales inquiries.
-
-Staff:
-
-View and manage assigned buildings.
-
-Handle customer interactions and maintain transaction records.
-
-Manager:
-
-Perform CRUD operations on buildings (including text and image data stored on Cloudinary).
-
-Manage and assign buildings to staff.
-
-Manage staff information.
-
-Handle CRUD operations for customer data.
-
-Assign customers to staff for personalized management.
-
-Security Features
-
-Spring Security with JWT:
-
-Authentication and authorization using JWT tokens stored in HttpOnly cookies.
-
-Automatic token refresh mechanism when access tokens expire.
-
-Token revocation upon user logout.
-
-Role-based Access Control: Fine-grained permission control for managers, staff, and general users.
-
-Secure Password Reset:
-
-OTP-based password reset functionality using Redis for secure, time-limited OTP storage.
-
-OTPs expire after 5 minutes to enhance security.
-
-Building Management
-
-Managers can add, update, delete, and view building information.
-
-Staff can view but not modify building information assigned to them.
-
-Customer Management
-
-Managers can handle customer data with full CRUD functionality.
-
-Managers assign customers to specific staff members for better service.
-
-Staff members maintain customer interaction logs and transaction histories.
-
-Additional Features
-
-Image storage for building details using Cloudinary.
-
-Email notifications for OTP-based password recovery using Gmail SMTP.
-
-Technical Details
-
-Backend Technologies
-
-Framework: Spring Boot 3.x
-
-Server: Apache Tomcat 10.x
-
-Servlet API: Jakarta Servlet API 6.x
-
-Deployment: Packaged as .war file
-
-Design Patterns: Builder Pattern for object construction
-
-Architecture: MVC (Model, View, Controller) with layered structure
-
-Controller
-
-Service
-
-Repository
-
-Frontend Technologies
-
-View Engine: JSP files for dynamic content rendering
-
-AJAX: jQuery for asynchronous API calls
-
-Database and Storage
-
-Database: MySQL for persistent data storage
-
-Redis: For secure and time-limited OTP storage
-
-Cloudinary: For image storage related to building information
-
-Security
-
-Authentication: JWT stored in HttpOnly cookies
-
-Authorization: Role-based access control
-
-Password Security: Secure password reset via email OTP
-
-Setup Instructions
-
-Prerequisites
-
-Java Development Kit (JDK) 17 or higher
-
-Apache Maven
-
-MySQL Server
-
-Redis Server
-
-Running the Application Locally
-
-Clone the repository:
-
-git clone <repository_url>
-cd <project_directory>
-
-Configure the database connection in application.properties:
-
-spring.datasource.url=jdbc:mysql://localhost:3306/<database_name>
-spring.datasource.username=<your_username>
-spring.datasource.password=<your_password>
-
-Configure Redis and Cloudinary credentials in application.properties.
-
-Build and run the application:
-
-mvn clean package
-java -jar target/<project_name>.war
-
-Access the application at http://localhost:8080.
-
-Deployment
-
-The application can be deployed to any servlet container supporting Jakarta Servlet API 6.x, such as Apache Tomcat 10.x.
-
-Future Enhancements
-
-Improve frontend design for a more user-friendly experience.
-
-Implement additional features for enhanced reporting and analytics.
-
-Integrate third-party APIs for better customer engagement.
-
-###Conclusion
-
-This project showcases a comprehensive understanding of backend development with Spring Boot, secure application design using JWT and Redis, and practical knowledge of web technologies essential for a Java Backend Developer role.
+<p>
+  This is my first personal project as I learn and grow as a Java backend developer, focusing on hands-on experience with Spring Boot and backend technologies.  The application facilitates the management of buildings, customers, and transactions for a property management company. It provides distinct functionalities for different user roles including managers, staff, and general users.
+</p>
+
+<hr/>
+
+<h2><font color="#117864">Technologies & Tools</font></h2>
+<ul>
+  <li><strong>Backend Framework:</strong> Spring Boot 3.x</li>
+  <li><strong>Server:</strong> Apache Tomcat 10.x, Jakarta Servlet API 6.x</li>
+  <li><strong>Packaging:</strong> Deployed as a <code>.war</code> file</li>
+  <li><strong>Frontend:</strong> JSP for views, AJAX calls via jQuery</li>
+  <li><strong>Database:</strong> MySQL</li>
+  <li><strong>Security:</strong> Spring Security integrated with JWT; tokens are stored in HTTP-only cookies with automatic expiry and refresh mechanisms</li>
+  <li><strong>Email Service:</strong> Configured with <code>spring.mail.host=smtp.gmail.com</code> to send OTP codes for password recovery</li>
+  <li><strong>Cache & OTP Storage:</strong> Redis (with OTP auto-deletion after 5 minutes)</li>
+  <li><strong>File Storage:</strong> Cloudinary (for storing building image files)</li>
+  <li><strong>Design Patterns:</strong> Utilizes the Builder pattern for object construction</li>
+</ul>
+
+<hr/>
+
+<h2><font color="#117864">Project Architecture & Design</font></h2>
+<p>
+  The application follows a layered architecture, which is often referred to as a three-layer model. Although I have organized the code into <em>Controller</em>, <em>Service</em>, and <em>Repository</em> layers, this design effectively encapsulates the presentation, business, and persistence logic.
+</p>
+<ul>
+  <li>
+    <strong>Controller Layer:</strong> 
+    <br/>Handles incoming HTTP requests using <code>@RestController</code> for RESTful endpoints, and manages view rendering through ModelAndView with JSP files.
+  </li>
+  <li>
+    <strong>Service Layer:</strong> 
+    <br/>Contains business logic and orchestrates communication between controllers and repositories.
+  </li>
+  <li>
+    <strong>Repository Layer:</strong> 
+    <br/>Manages data persistence and interactions with the MySQL database.
+  </li>
+</ul>
+<p>
+  In addition, the Builder design pattern is applied to facilitate the construction of complex objects within the application.
+</p>
+
+<hr/>
+
+<h2><font color="#117864">Application Features</font></h2>
+<ul>
+  <li>
+    <strong>Building Listings & Management:</strong>
+    <br/>The homepage displays a list of buildings complete with sale and purchase information. Managers can perform full CRUD operations (create, read, update, delete) on building data, including text details and image files.
+  </li>
+  <li>
+    <strong>User Authentication & Profile Management:</strong>
+    <br/>Includes user registration, login, and password recovery via OTP sent to email. Each user’s profile supports complete CRUD operations.
+  </li>
+  <li>
+    <strong>Role-Based Access Control:</strong>
+    <br/>Implements three primary user roles:
+    <ul>
+      <li>
+        <em>Regular User:</em> Can view building listings and submit contact information.
+      </li>
+      <li>
+        <em>Staff:</em> Access to a dedicated admin interface with limited permissions, primarily to view building details and manage assigned customers.
+      </li>
+      <li>
+        <em>Manager:</em> Full administrative control including managing buildings, assigning staff, and overseeing customer data and transactions.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Customer & Transaction Management:</strong>
+    <br/>Managers can assign customers to staff members. Each customer’s details include a transaction history where staff can log various customer care activities, ensuring smooth and efficient management of the business process.
+  </li>
+</ul>
+
+<hr/>
+
+<h2><font color="#117864">Security Implementation</font></h2>
+<p>
+  Security is a critical aspect of this application and is addressed through multiple layers:
+</p>
+<ul>
+  <li>
+    <strong>JWT & Spring Security:</strong>
+    <br/>Authentication is managed using JWT integrated with Spring Security. Tokens are stored securely in HTTP-only cookies and are automatically removed upon expiration.
+  </li>
+  <li>
+    <strong>Token Refresh & Revocation:</strong>
+    <br/>A refresh token mechanism is in place to generate new access tokens when needed, and tokens are revoked immediately upon user logout.
+  </li>
+  <li>
+    <strong>OTP-Based Password Recovery:</strong>
+    <br/>When a user forgets their password, an OTP is sent via email (using SMTP configuration for Gmail). The OTP is temporarily stored in Redis and is auto-deleted after 5 minutes to enhance security.
+  </li>
+</ul>
+
+<hr/>
+
+<h2><font color="#117864">Frontend & API Integration</font></h2>
+<ul>
+  <li>
+    <strong>View Layer:</strong>
+    <br/>The application uses JSP files to render views. Although the frontend design is kept simple, it effectively demonstrates the backend functionalities.
+  </li>
+  <li>
+    <strong>AJAX Communication:</strong>
+    <br/>RESTful endpoints are consumed using jQuery AJAX calls, enabling seamless interaction between the client-side and server-side components.
+  </li>
+</ul>
+
+<hr/>
+
+<h2><font color="#117864">System Diagram</font></h2>
+<p>
+  The diagram below illustrates the overall architecture of the application:
+</p>
+<p align="center">
+  <!-- Replace 'path/to/your/system_diagram.png' with the actual path or URL of your system diagram image -->
+  <img src="path/to/your/system_diagram.png" alt="Application System Architecture" style="max-width:100%; height:auto;">
+</p>
+
+<hr/>
+
+<h2><font color="#117864">Getting Started</font></h2>
+<p>
+  To set up and run this project locally, follow these steps:
+</p>
+<ol>
+  <li>Clone the repository to your local machine.</li>
+  <li>Ensure that JDK, Maven, and MySQL are installed and properly configured.</li>
+  <li>Configure your SMTP settings for email services (using <code>smtp.gmail.com</code>).</li>
+  <li>Set up Redis for OTP storage with a 5-minute auto-expiry configuration.</li>
+  <li>Build the project to generate the <code>.war</code> file.</li>
+  <li>Deploy the <code>.war</code> file to Apache Tomcat 10.x.</li>
+  <li>Access the application via your designated domain.</li>
+</ol>
+
+<hr/>
+
+<h2><font color="#117864">Conclusion</font></h2>
+<p>
+  This project is a comprehensive demonstration of Java backend development using Spring Boot. By integrating a variety of modern technologies and design patterns, it delivers a secure and efficient system for managing building-related data. The project is an ideal showcase for skills in RESTful API development, security implementation, and layered architecture design.
+</p>
+
+<hr/>
+
+<h2><font color="#117864">Contact</font></h2>
+<p>
+  For further information or inquiries, please feel free to contact me.
+</p> comprehensive understanding of backend development with Spring Boot, secure application design using JWT and Redis, and practical knowledge of web technologies essential for a Java Backend Developer role.
 
 ![image](https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610)
