@@ -127,8 +127,8 @@
   The diagram below illustrates the overall architecture of the application:
 </p>
 <p align="center">
-  <!-- Replace 'path/to/your/system_diagram.png' with the actual path or URL of your system diagram image -->
-![image](https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610)
+  <img src="https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610" alt="Application System Architecture" style="max-width:100%; height:auto;">
+
 
 </p>
 
