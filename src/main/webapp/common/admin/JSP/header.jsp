@@ -7,6 +7,7 @@
 <div id="navbar" class="navbar navbar-default ace-save-state" style="background-color:#35bf76">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <div class="navbar-header pull-left">
+
             <a href="#" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>

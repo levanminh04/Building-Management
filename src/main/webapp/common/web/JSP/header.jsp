@@ -51,16 +51,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="nav-item p-2" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<%--<li class="nav-item active"><a class="nav-link" href="/trang-chu#">Trang chủ--%>
 						<%--<span class="sr-only">(current)</span>--%>
 					<%--</a></li>--%>
 					<c:if test="${empty username}">
-						<li class>
+						<li class="nav-item p-2">
 							<a class="nav-link" href="<c:url value='/login'/>">Đăng nhập</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="/sign-up">Đăng ký</a></li>
+						<li class="nav-item p-2"><a class="nav-link" href="/sign-up">Đăng ký</a></li>
 					</c:if>
 					<c:if test="${not empty username}">
 						<li class="nav-item"><a class="nav-link" href="javascript:void(0);" onclick="navigateWithRefresh('/admin/home')"  > Xin chào ${username}</a></li>

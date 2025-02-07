@@ -43,8 +43,9 @@ public class BuildingConverter {
         buildingEntity.setRentAreaEntities(rentAreaConverter.toRentAreaEntityList(buildingDTO, buildingEntity));
 
         // Lưu building trước để có ID
-        buildingEntity = buildingRepository.save(buildingEntity);
-
+        if(buildingDTO.getId() == null) {
+            buildingEntity = buildingRepository.save(buildingEntity);
+        }
         // Upload file và tạo FileEntity
         List<MultipartFile> files = buildingDTO.getFiles();
 
@@ -55,14 +56,14 @@ public class BuildingConverter {
                         .name(result.get("original_filename").toString())
                         .fileUrl(result.get("url").toString())
                         .fileId(result.get("public_id").toString())
-                        .buildingid(buildingEntity.getId()) // 🔥 Đảm bảo ID không null
+                        .buildingId(buildingEntity.getId()) // 🔥 Đảm bảo ID không null
                         .buildingEntity(buildingEntity)
                         .build();
                 buildingEntity.getFileEntities().add(fileEntity);
             }
         }
         else{
-            List<FileEntity> fileEntityList = fileService.findByBuildingid(buildingDTO.getId());
+            List<FileEntity> fileEntityList = fileService.findByBuildingId(buildingDTO.getId());
             buildingEntity.getFileEntities().addAll(fileEntityList);
         }
 

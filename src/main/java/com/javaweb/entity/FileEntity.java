@@ -25,7 +25,7 @@ public class FileEntity extends BaseEntity {
     private String fileId;
 
     @Column(name = "buildingid")
-    private Long buildingid;
+    private Long buildingId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buildingid", insertable = false, updatable = false)

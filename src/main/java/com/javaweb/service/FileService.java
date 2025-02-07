@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface FileService {
     void save(Map result);
-    List<FileEntity> findByBuildingid(Long id);
+    List<FileEntity> findByBuildingId(Long id);
 }

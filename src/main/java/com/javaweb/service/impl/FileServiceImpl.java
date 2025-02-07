@@ -26,7 +26,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<FileEntity> findByBuildingid(Long id) {
-        return fileRepository.findByBuildingid(id);
+    public List<FileEntity> findByBuildingId(Long id) {
+        return fileRepository.findByBuildingId(id);
     }
 }

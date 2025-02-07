@@ -7,5 +7,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface FileRepository extends JpaRepository<FileEntity, Integer>, PagingAndSortingRepository<FileEntity, Integer> {
-    List<FileEntity> findByBuildingid(Long id);
+    List<FileEntity> findByBuildingId(Long id);
 }
