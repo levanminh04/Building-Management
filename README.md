@@ -128,7 +128,8 @@
 </p>
 <p align="center">
   <!-- Replace 'path/to/your/system_diagram.png' with the actual path or URL of your system diagram image -->
-  <img src="path/to/your/system_diagram.png" alt="Application System Architecture" style="max-width:100%; height:auto;">
+![image](https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610)
+
 </p>
 
 <hr/>
@@ -156,9 +157,4 @@
 
 <hr/>
 
-<h2><font color="#117864">Contact</font></h2>
-<p>
-  For further information or inquiries, please feel free to contact me.
-</p> comprehensive understanding of backend development with Spring Boot, secure application design using JWT and Redis, and practical knowledge of web technologies essential for a Java Backend Developer role.
 
-![image](https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610)
