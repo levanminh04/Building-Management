@@ -16,7 +16,7 @@
 
 
 # Sử dụng Java 17 làm base image
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:17-jre
 
 # Đặt thư mục làm việc trong container
 WORKDIR /app
