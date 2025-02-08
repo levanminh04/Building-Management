@@ -72,7 +72,7 @@
         <em>Regular User:</em> Can view building listings and submit contact information.
       </li>
       <li>
-        <em>Staff:</em> Access to a dedicated admin interface with limited permissions, primarily to view building details and manage assigned customers.
+        <em>Staff:</em> Access to a dedicated admin interface with limited permissions, primarily to view building details and manage assigned buildings and customers.
       </li>
       <li>
         <em>Manager:</em> Full administrative control including managing buildings, assigning staff, and overseeing customer data and transactions.
