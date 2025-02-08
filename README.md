@@ -23,7 +23,7 @@
   <li><strong>Database:</strong> MySQL</li>
   <li><strong>Security:</strong> Spring Security integrated with JWT; tokens are stored in HTTP-only cookies with automatic expiry and refresh mechanisms</li>
   <li><strong>Email Service:</strong> Configured with <code>spring.mail.host=smtp.gmail.com</code> to send OTP codes for password recovery</li>
-  <li><strong>Cache & OTP Storage:</strong> Redis (with OTP auto-deletion after 5 minutes)</li>
+  <li><strong>OTP Storage:</strong> Redis (with OTP auto-deletion after 5 minutes)</li>
   <li><strong>File Storage:</strong> Cloudinary (for storing building image files)</li>
   <li><strong>Design Patterns:</strong> Utilizes the Builder pattern for object construction</li>
 </ul>
