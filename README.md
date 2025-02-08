@@ -23,7 +23,7 @@
   <li><strong>Database:</strong> MySQL</li>
   <li><strong>Security:</strong> Spring Security integrated with JWT; tokens are stored in HTTP-only cookies with automatic expiry and refresh mechanisms</li>
   <li><strong>Email Service:</strong> Configured with <code>spring.mail.host=smtp.gmail.com</code> to send OTP codes for password recovery</li>
-  <li><strong>Cache & OTP Storage:</strong> Redis (with OTP auto-deletion after 5 minutes)</li>
+  <li><strong>OTP Storage:</strong> Redis (with OTP auto-deletion after 5 minutes)</li>
   <li><strong>File Storage:</strong> Cloudinary (for storing building image files)</li>
   <li><strong>Design Patterns:</strong> Utilizes the Builder pattern for object construction</li>
 </ul>
@@ -72,7 +72,7 @@
         <em>Regular User:</em> Can view building listings and submit contact information.
       </li>
       <li>
-        <em>Staff:</em> Access to a dedicated admin interface with limited permissions, primarily to view building details and manage assigned customers.
+        <em>Staff:</em> Access to a dedicated admin interface with limited permissions, primarily to view building details and manage assigned buildings and customers.
       </li>
       <li>
         <em>Manager:</em> Full administrative control including managing buildings, assigning staff, and overseeing customer data and transactions.
@@ -152,7 +152,7 @@
 
 <h2><font color="#117864">Conclusion</font></h2>
 <p>
-  This project is a comprehensive demonstration of Java backend development using Spring Boot. By integrating a variety of modern technologies and design patterns, it delivers a secure and efficient system for managing building-related data. The project is an ideal showcase for skills in RESTful API development, security implementation, and layered architecture design.
+  This project marks my first step into exploring Java backend web development, particularly with Spring Boot. It represents a foundational learning journey where I have integrated various modern technologies to create a secure and efficient system for managing building-related data, laying the groundwork for practical experience essential to a Java Backend Developer role.
 </p>
 
 <hr/>
