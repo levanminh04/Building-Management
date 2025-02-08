@@ -152,7 +152,7 @@
 
 <h2><font color="#117864">Conclusion</font></h2>
 <p>
-  This project is a comprehensive demonstration of Java backend development using Spring Boot. By integrating a variety of modern technologies, it delivers a secure and efficient system for managing building-related data. and practical knowledge of web technologies essential for a Java Backend Developer role.
+  This project marks my first step into exploring Java backend web development, particularly with Spring Boot. It represents a foundational learning journey where I have integrated various modern technologies to create a secure and efficient system for managing building-related data, laying the groundwork for practical experience essential to a Java Backend Developer role.
 </p>
 
 <hr/>
