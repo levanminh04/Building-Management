@@ -30,6 +30,18 @@
 
 <hr/>
 
+<h2><font color="#117864">System Diagram</font></h2>
+<p>
+  The diagram below illustrates the overall architecture of the application:
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610" alt="Application System Architecture" style="max-width:100%; height:auto;">
+
+
+</p>
+
+<hr/>
+
 <h2><font color="#117864">Project Architecture & Design</font></h2>
 <p>
   The application follows a layered architecture, which is often referred to as a three-layer model. Although I have organized the code into <em>Controller</em>, <em>Service</em>, and <em>Repository</em> layers, this design effectively encapsulates the presentation, business, and persistence logic.
@@ -122,17 +134,6 @@
 
 <hr/>
 
-<h2><font color="#117864">System Diagram</font></h2>
-<p>
-  The diagram below illustrates the overall architecture of the application:
-</p>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1f9b41c9-1b86-4312-835f-8f76434cc610" alt="Application System Architecture" style="max-width:100%; height:auto;">
-
-
-</p>
-
-<hr/>
 
 <h2><font color="#117864">Getting Started</font></h2>
 <p>
