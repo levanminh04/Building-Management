@@ -103,7 +103,7 @@ public class BuildingSearchBuilder extends AbstractBuilder {
 //    public Long getLevel() {
 //        return level;
 //    }
-//
+
 //    public static class Builder{
 //        private String name;
 //        private Long floorArea;
