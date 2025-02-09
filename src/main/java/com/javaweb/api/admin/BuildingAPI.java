@@ -30,6 +30,7 @@ public class BuildingAPI {
 
         try{
             buildingService.addOrUpdateBuilding(buildingDTO);
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Success");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
