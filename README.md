@@ -1,6 +1,6 @@
 <!-- README.md -->
 
-<h1 align="center"><font size="7" color="#2E86C1">Building Management Application</font></h1>
+<h1 align="center"><font size="7" color="#2E86C1">Real Estate Management Application</font></h1>
 <p align="center"><font size="4">A Spring Boot Web Application Combining RESTful API and MVC for Java Backend Development</font></p>
 
 <br/>
