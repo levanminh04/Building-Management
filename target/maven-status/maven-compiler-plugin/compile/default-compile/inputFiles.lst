@@ -21,7 +21,6 @@ C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\Otp
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\converter\CustomerSearchResponseConverter.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\repository\custom\CustomerRepositoryCustom.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\SpringBootWebApplication.java
-C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\utils\UploadFileUtils.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\request\VerifyOtpRequest.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\entity\TransactionEntity.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\repository\custom\impl\UserRepositoryImpl.java
@@ -75,6 +74,7 @@ C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\imp
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\impl\UserServiceImpl.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\dto\RoleDTO.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\dto\MyUserDetail.java
+C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\config\WebConfig.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\converter\BuildingSearchBuilderConverter.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\controller\admin\BuildingController.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\impl\RoleService.java
@@ -82,7 +82,6 @@ C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\dto\U
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\converter\CustomerSearchBuilderConverter.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\enums\TransactionType.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\RentAreaService.java
-C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\utils\ReadFileUtils.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\enums\districtCode.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\converter\UserConverter.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\IUserService.java
@@ -115,7 +114,6 @@ C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\dto\A
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\repository\custom\impl\BuildingRepositoryImpl.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\model\request\ResetPasswordRequest.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\entity\CustomerEntity.java
-C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\utils\DistrictCode.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\repository\custom\impl\RoleRepositoryImpl.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\service\impl\TransactionalServiceImpl.java
 C:\Real-Estate-Management - LVM\Exercise-4\src\main\java\com\javaweb\utils\MessageUtils.java

@@ -3,28 +3,16 @@ package com.javaweb.controller.web;
 import com.javaweb.converter.BuildingConverter;
 import com.javaweb.entity.BuildingEntity;
 import com.javaweb.enums.districtCode;
-import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingResponse;
 import com.javaweb.service.BuildingService;
 import com.javaweb.utils.CookieUtils;
-import com.javaweb.utils.DistrictCode;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;

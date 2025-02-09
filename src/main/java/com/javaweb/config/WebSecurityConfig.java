@@ -33,6 +33,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Nếu token không hợp lệ hoặc không có, và bạn đã gửi lỗi 401 trong jwtTokenFilter, UsernamePasswordAuthenticationFilter sẽ không bao giờ được gọ
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Explicitly disable session creation ,jwt là stateless vì vậy nếu không sử dụng đến session thì thêm lệnh này vào để ngăn spring security tự động tạo JSESSIONID
                 )
@@ -70,6 +71,9 @@ public class WebSecurityConfig {
                             ).permitAll()
                             .anyRequest().authenticated();
                 })
+                .headers(headers -> headers
+                        .cacheControl(cache -> cache.disable()) // ✅ Cho phép cache
+                )
                 .logout(logout -> {
                     logout
                             .logoutUrl("/logout") // Endpoint xử lý yêu cầu đăng xuất

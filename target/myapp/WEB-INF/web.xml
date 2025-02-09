@@ -3,33 +3,45 @@
          xmlns="http://jakarta.ee/xml/ns/jakartaee"
          xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee http://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+
     <display-name>Spring Boot Web JSP with Sitemesh</display-name>
 
+    <!-- Cấu hình SiteMesh -->
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- Cấu hình ExpiresFilter để cache file tĩnh -->
+    <filter>
+        <filter-name>ExpiresFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+        <init-param>
+            <param-name>ExpiresByType text/css</param-name>
+            <param-value>access plus 7 days</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType application/javascript</param-name>
+            <param-value>access plus 7 days</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExpiresFilter</filter-name>
+        <url-pattern>/static/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Cấu hình session -->
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 
+    <!-- Cấu hình trang mặc định -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-
-    <servlet>
-        <servlet-name>DisplayImage</servlet-name>
-        <servlet-class>com.javaweb.utils.ReadFileUtils</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DisplayImage</servlet-name>
-        <url-pattern>/repository/*</url-pattern>
-    </servlet-mapping>
 
 </web-app>
