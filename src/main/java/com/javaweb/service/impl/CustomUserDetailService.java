@@ -49,16 +49,15 @@ public class CustomUserDetailService implements UserDetailsService {
 //        return myUserDetail;
 
     private Collection<? extends GrantedAuthority> getAuthorities(UserEntity user) {
-//        return user.getRoles().stream()
-//                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
-//                .collect(Collectors.toList());
         Collection<? extends GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getCode()))
-//                .peek(authority -> logger.info("Granted Authority: {}", authority))
                 .collect(Collectors.toList());
 
         return authorities;
     }
+
 }
+
+
 
 
